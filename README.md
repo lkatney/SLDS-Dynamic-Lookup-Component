@@ -23,12 +23,13 @@ On VF page, just add a static resource and component with appropriare attributes
 
 ## Attributes Usage
 
-SLDSResourceName(required): Attribute in which name of your static resource to be passed which contains Salesforce Lightning Design System(SLDS)  
-ObjectApiName(required): Api name of component on which search should happen
+| Attribute     		| Requirement   | Description  	|
+| ----------------- 	|:-------------:| -------------:|
+| SLDSResourceName  	| Required 		| Attribute in which name of your static resource to be passed which contains Salesforce Lightning Design System(SLDS)|
+| ObjectApiName     	| Required      | Api name of component on which search should happen|
+| DisplayFieldApiNames 	| Required      | Attribute to get fields Api Name whose value needs to be displayed while searching.These are seperated by comma.For example : 'firstname,lastname'|
+| LabelName 			| Required 		| Attribute to display label along with custom lookup field made by this component |
+| SetValueToField 		| Required 		| Attribute that will tell where to put selected value |
+| DisplayFieldsPattern	| Optional		| Attribute to get pattern to display value.You can combine two fields with pattern. For example : 'firstname - lastname'. By default it will take pattern as comma seperated fields|
+| photo 				| Optional 		| Attribute that will tell if photo needs to be added to records while searching. For fields to be used, pattern should be 'field->fieldAPiName'. For url, pattern should be 'url->pathofimage'|
 
-
-| Attribute     	| Requirement   	| Description  	|
-| ----------------- |:-----------------:| -------------:|
-| SLDSResourceName  | required 			| $1600 		|
-| col 2 is      	| centered      	|   $12 		|
-| zebra stripes 	| are neat      	| $1    		|
