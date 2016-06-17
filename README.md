@@ -6,7 +6,8 @@ Author [Lakshay Katney](http://blog.lkatney.com/about/)
 ## Setup
 1. This repo is ready to deploy package in any Salesforce organization. Use any metadata tool to deploy it
 2. There is an unmanaged version of this package too. Use below links to install it  
-##[Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t280000003L0W)  ##[Production/Developer](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t280000003L0W)
+**[Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t280000003L0W)**
+**[Production/Developer](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t280000003L0W)**
 
 ## Usage
 On VF page, just add a static resource and component with appropriare attributes
@@ -34,7 +35,7 @@ On VF page, just add a static resource and component with appropriare attributes
  **photo** 					| Optional 		| Attribute that will tell if photo needs to be added to records while searching.  For fields to be used, pattern should be 'field->fieldAPiName'. For url, pattern should be 'url->pathofimage'  
 
 
- ## Screenshots
+ **Screenshots**
 
  ![Demo Page](/images/DemoPage.png "Demo Page")  
  ![Search](/images/DemoPage.png "Search")  
