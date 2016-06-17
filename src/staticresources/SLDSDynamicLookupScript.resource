@@ -99,11 +99,16 @@ function select(componentId, name,photoUrl,id){
  */
 function recordSelected(componentId){
     var selector = '#'+componentId;
-    document.querySelector(selector+" #selected-record").style.display = 'block';
-    document.querySelector(selector+" #input-text").style.display = 'none';
-    document.querySelector(selector+" #lookup").value = '';
-    var lstBox = document.querySelector(selector+" #list-box");
-    lstBox.style.display = 'none';
+    if(document.querySelector(selector+" #selected-record").style.display == 'none'){
+        document.querySelector(selector+" #selected-record").style.display = 'block';
+        document.querySelector(selector+" #input-text").style.display = 'none';
+        document.querySelector(selector+" #lookup").value = '';
+        var lstBox = document.querySelector(selector+" #list-box");
+        lstBox.style.display = 'none';
+    }else{
+        document.querySelector(selector+" #input-text").style.display = 'block';
+        document.querySelector(selector+" #selected-record").style.display = 'none';
+    }
     hideLoader(componentId);
 }
 
@@ -113,8 +118,7 @@ function recordSelected(componentId){
  */
 function removeRecord(componentId){
     var selector = '#'+componentId;
-    document.querySelector(selector+" #selected-record").style.display = 'none';
-    document.querySelector(selector+" #input-text").style.display = 'block';
+    eval(componentId+"setOwnerId(null)");
 }
 
 function showLoader(componentId){

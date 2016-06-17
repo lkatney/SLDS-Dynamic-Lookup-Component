@@ -74,7 +74,7 @@ public class SLDSDynamicLookupController {
 	        for(String fieldName : displayFieldNamesLst){
 	            String fieldValue = sobj.get(fieldName) == null ? '' : String.valueOf(sobj.get(fieldName));
 	            displayValue = displayValue.replace(fieldName, fieldValue);
-	            if(String.isBlank(photoToDisplay) && String.isNotBlank(photoFieldName) && sobj.get(photoFieldName) != null){
+	            if(String.isNotBlank(photoFieldName) && sobj.get(photoFieldName) != null){
 	                photoToDisplay = String.valueOf(sobj.get(photoFieldName));
 	            }
 	        }
