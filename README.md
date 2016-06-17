@@ -33,9 +33,10 @@ On VF page, just add a static resource and component with appropriare attributes
  **DisplayFieldsPattern**	| Optional		| Attribute to get pattern to display value.You can combine two fields with pattern.  For example : 'firstname - lastname'. By default it will take pattern as comma seperated fields
  **photo** 					| Optional 		| Attribute that will tell if photo needs to be added to records while searching.  For fields to be used, pattern should be 'field->fieldAPiName'. For url, pattern should be 'url->pathofimage'
 
- ## Screenshots
- ![Demo Page](/images/DemoPage.png "Demo Page")
- ![Search](/images/DemoPage.png "Search")
- ![Selection](/images/DemoPage.png "Selection")
+ ## Screenshots  
+
+ ![Demo Page](/images/DemoPage.png "Demo Page")  
+ ![Search](/images/DemoPage.png "Search")  
+ ![Selection](/images/DemoPage.png "Selection")  
 
 
