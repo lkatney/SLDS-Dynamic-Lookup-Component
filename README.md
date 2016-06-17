@@ -17,6 +17,7 @@ On VF page, just add a static resource and component with appropriare attributes
 ```
 
 **Component Usage**
+```
 <c:SLDSDynamicLookup SLDSResourceName="{!$Resource.SLDS}" ObjectApiName="User" DisplayFieldApiNames="Username,Name" DisplayFieldsPattern="Name - Username"  photo="field->smallPhotoUrl" LabelName="Set User" SetValueToField="{!con.OwnerId}"/>
 ```
 
