@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>SDLSLookupComponentDemo</members>
+        <members>SLDSDynamicLookupController</members>
+        <members>SLDSDynamicLookupControllerTest</members>
+        <members>SLDSLookupComponentDemoController</members>
+        <members>SLDSLookupComponentDemoControllerTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>SLDSDynamicLookup</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>SDLSLookupComponentDemo</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>SLDS_Dynamic_Lookup</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>SLDS_Dynamic_Lookup_Demo</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>SLDS</members>
+        <members>SLDSDynamicLookupScript</members>
+        <name>StaticResource</name>
+    </types>
+    <version>35.0</version>
+</Package>

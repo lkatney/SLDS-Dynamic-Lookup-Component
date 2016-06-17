@@ -1,0 +1,76 @@
+<apex:component controller="SLDSDynamicLookupController">
+    
+    <!-- attributes -->
+    <apex:attribute name="SLDSResourceName" 
+        description="Attribute in which ame of static resource to be passed"
+            required="true" type="String"/>
+    <apex:attribute name="LabelName"
+        description="Attribute to display label along with look up field to distinguish fields"
+            required="true" type="String" assignTo="{!label}"/>
+    <apex:attribute name="ObjectApiName" 
+        description="Api name of component on which search should happen"
+            required="true" type="String" assignTo="{!objectName}"/>
+    <apex:attribute name="DisplayFieldApiNames" 
+        description="Attribute to get fields Api Name whose value needs to be displayed while searching.These are seperated by comma.For example : 'firstname,lastname'" 
+            required="true" type="String"/>
+     <apex:attribute name="DisplayFieldsPattern" 
+        description="Attribute to get pattern to display value.You can combine two fields with pattern. For example : 'firstname - lastname'" 
+            type="String"/>
+    <apex:attribute name="Photo" 
+        description="Attribute that will tell if photo needs to be added to records while searching. For fields to be used, pattern should be 'field->fieldAPiName'. For url, pattern should be 'url->pathofimage'" 
+            type="String"/>
+    <apex:attribute name="SetValueToField"
+        description="Attribute that will tell where to put selected value"
+            required="true" type="String"/>
+            
+    <!-- body-->
+        <div id="{!uniqueComponentId}">
+            <div class="slds-spinner_container" style="display:none;" id="loader">
+              <div class="slds-spinner slds-spinner--large" aria-hidden="false" role="alert">
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+              </div>
+            </div>
+            
+            <apex:actionFunction name="{!uniqueComponentId}setOwnerId" rerender="random" oncomplete="recordSelected('{!uniqueComponentId}')">
+                <apex:param name="setId" value="" assignTo="{!SetValueToField}"/>
+            </apex:actionFunction>
+             <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
+                <div class="slds-form-element">
+                  <label class="slds-form-element__label" for="lookup">{!LabelName}</label>
+                  <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                     
+                    <!-- section to display selected record-->
+                    <div class="slds-pill_container slds-show" style="display:none;" id="selected-record">
+                      <a href="javascript:void(0)" class="slds-pill">
+                        <img src=""  class="slds-icon slds-icon-standard-account slds-pill__icon" id="select-image"/>
+                        <span class="slds-pill__label" id="selected-name"></span>
+                        <button type="button" class="slds-button slds-button--icon-bare slds-pill__remove" onclick="removeRecord('{!uniqueComponentId}')">
+                          <apex:image url="{!URLFOR(SLDSResourceName, '/assets/icons/utility/close_60.png')}"  styleclass="slds-button__icon"/>
+                          <span class="slds-assistive-text">Remove</span>
+                        </button>
+                      </a>
+                    </div>
+                    
+                    <!-- section to display input field for search-->
+                    <div id="input-text" style="display:block;">
+                        <apex:image url="{!URLFOR(SLDSResourceName, '/assets/icons/utility/search_60.png')}"  styleclass="slds-input__icon slds-icon-text-default"/>
+                        <input id="lookup" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" 
+                            onkeyup="keyPressedOnLookup('{!uniqueComponentId}','{!ObjectApiName}', '{!DisplayFieldApiNames}', '{!DisplayFieldsPattern}','{!Photo}','{!objectLabelPlural}', '{!$RemoteAction.SLDSDynamicLookupController.search}')" 
+                                placeholder="Search {!objectLabelPlural}"/>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- section to display searched results-->
+                <div class="slds-lookup__menu" role="listbox" id="list-box" style="display: none">
+                  <div class="slds-lookup__item">
+                      <apex:image url="{!URLFOR(SLDSResourceName, '/assets/icons/utility/search_60.png')}" styleClass="slds-icon slds-icon-text-default slds-icon--small" width="20px" height="20px"/>
+                      <span id="search-text-info" style="display:inline"></span>
+                  </div>
+                  <ul class="slds-lookup__list" role="presentation" id="record-list">
+                  </ul>
+                </div>
+              </div>
+         </div>
+</apex:component>
