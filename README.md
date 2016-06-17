@@ -35,8 +35,10 @@ On VF page, just add a static resource and component with appropriare attributes
 
  ## Screenshots  
 
+<p align="center">
  ![Demo Page](/images/DemoPage.png "Demo Page")  
  ![Search](/images/DemoPage.png "Search")  
  ![Selection](/images/DemoPage.png "Selection")  
+</p>
 
 
