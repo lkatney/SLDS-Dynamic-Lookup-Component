@@ -24,7 +24,7 @@ On VF page, just add a static resource and component with appropriare attributes
 ## Attributes Usage
 
  Attribute     				| Requirement   | Description  																																						
-:---------------------------:|:------------:|:--------------------------------:
+:--------------------------:|:------------:|:--------------------------------
  **SLDSResourceName**  		| Required 		| Attribute in which name of your static resource to be passed which contains Salesforce Lightning Design System(SLDS)												
  **ObjectApiName**     		| Required      | Api name of component on which search should happen.
  **DisplayFieldApiNames**	| Required      | Attribute to get fields Api Name whose value needs to be displayed while searching.  These are seperated by comma.For example : 'firstname,lastname'
