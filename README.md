@@ -35,10 +35,10 @@ On VF page, just add a static resource and component with appropriare attributes
  **photo** 					| Optional 		| Attribute that will tell if photo needs to be added to records while searching.  For fields to be used, pattern should be 'field->fieldAPiName'. For url, pattern should be 'url->pathofimage'  
 
 
- **Screenshots**
+##Screenshots
 
- ![Demo Page](/images/DemoPage.png "Demo Page")  
- ![Search](/images/DemoPage.png "Search")  
- ![Selection](/images/DemoPage.png "Selection")  
+![Demo Page](/images/DemoPage.png "Demo Page")  
+![Search](/images/DemoPage.png "Search")  
+![Selection](/images/DemoPage.png "Selection")  
 
 
