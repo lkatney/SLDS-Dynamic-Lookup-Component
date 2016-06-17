@@ -5,8 +5,8 @@ Author [Lakshay Katney](http://blog.lkatney.com/about/)
   
 ## Setup
 1. This repo is ready to deploy package in any Salesforce organization. Use any metadata tool to deploy it
-2. There is an unmanaged version of this package too. Use below links to install it
-[Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t280000003L0R) [Production/Developer](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t280000003L0R)
+2. There is an unmanaged version of this package too. Use below links to install it  
+##[Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t280000003L0R)  ##[Production/Developer](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t280000003L0R)
 
 ## Usage
 On VF page, just add a static resource and component with appropriare attributes
@@ -23,7 +23,7 @@ On VF page, just add a static resource and component with appropriare attributes
 
 ## Attributes Usage
 
-| Attribute     		| Requirement   | Description  																																						    |
+| Attribute     		| Requirement   |Description  																																						    |
 | ----------------- 	|:-------------:| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------:
 |
 | SLDSResourceName  	| Required 		| Attribute in which name of your static resource to be passed which contains Salesforce Lightning Design System(SLDS)												    |
