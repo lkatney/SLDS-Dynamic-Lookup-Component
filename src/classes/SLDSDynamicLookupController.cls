@@ -19,9 +19,37 @@ public class SLDSDynamicLookupController {
             uniqueComponentId = label.replace(' ', '').toLowerCase();
         }
     }
+
+    public String setField{
+        get;
+        set{
+            if(String.isNotBlank(value)){
+                setField = value;
+                if(String.isBlank(photoValue)){
+                    photoValue = '';
+                }
+
+                List<Wrapper> results = search(objectName, fieldApiNames, displayPattern, photoValue, null, value);
+                
+                if(!results.isEmpty()){
+                    displayValue = results[0].displayValue;
+                    if(String.isNotBlank(results[0].photoUrl)){
+                        photoUrl = results[0].photoUrl;
+                    }else{
+                        photoUrl = '';
+                    }
+                }
+            }
+        }
+    }
     
     public String uniqueComponentId{get;set;}
     public String objectLabelPlural{get;set;}
+    public String displayValue{get;set;}
+    public String photoUrl{get;set;}
+    public String fieldApiNames{get;set;}
+    public String displayPattern{get;set;}
+    public String photoValue{get;set;}
     
     /**
 	 * Remote action method to send list of records
@@ -29,7 +57,7 @@ public class SLDSDynamicLookupController {
 	 * @return  List<Wrapper>
 	 */
 	@RemoteAction
-	public static List<Wrapper> search(String objectName, String displayFieldNames, String fieldsPattern, String photoValue,String searchText) {
+	public static List<Wrapper> search(String objectName, String displayFieldNames, String fieldsPattern, String photoValue,String searchText, String recordId) {
 	    String query;
         List<String> displayFieldNamesLst;
         String photoFieldName;
@@ -44,9 +72,15 @@ public class SLDSDynamicLookupController {
         //prepare a where clause
         displayFieldNamesLst = displayFieldNames.split(',');
         String whereClause = '';
-        for(String fieldName : displayFieldNamesLst){
-            whereClause += String.isBlank(whereClause) ? ' WHERE ' + fieldName + ' LIKE \'%{text}%\'' : ' OR ' + fieldName + ' LIKE \'%{text}%\'';
+
+        if(String.isBlank(recordId)){
+            for(String fieldName : displayFieldNamesLst){
+                whereClause += String.isBlank(whereClause) ? ' WHERE ' + fieldName + ' LIKE \'%{text}%\'' : ' OR ' + fieldName + ' LIKE \'%{text}%\'';
+            }
+        }else{
+            whereClause += ' WHERE Id =: recordId';
         }
+
         //add Id field to field names if necessary
         if(!displayFieldNames.toLowerCase().contains('id')){
             displayFieldNames += ', Id';
@@ -67,7 +101,12 @@ public class SLDSDynamicLookupController {
         }
         
         query = 'SELECT ' + displayFieldNames + ' FROM ' + objectName + whereClause;
-        finalQuery = query.replace('{text}', searchText);
+
+        if(String.isBlank(recordId)){
+            finalQuery = query.replace('{text}', searchText);
+        }else{
+            finalQuery = query;
+        }
 	    
 	    for(Sobject sobj : database.query(finalQuery)){
 	        String displayValue = fieldsPattern;

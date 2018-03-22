@@ -6,7 +6,7 @@ public class SLDSLookupComponentDemoController {
      * Constructor
     **/
     public SLDSLookupComponentDemoController(){
-        con = new Contact();
+        con = new Contact(AccountId = '00128000006QbVK', OwnerId = '00528000000MB72');
     }
     
     /**

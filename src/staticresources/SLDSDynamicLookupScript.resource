@@ -25,7 +25,7 @@ function startSearch(componentId, objectName, fieldNames, fieldsPattern, photo, 
     showLoader(componentId);
     var searchText = document.querySelector(selector+" #lookup");
     Visualforce.remoting.Manager.invokeAction(remoteMethod,
-            objectName, fieldNames, fieldsPattern, photo, searchText.value, 
+            objectName, fieldNames, fieldsPattern, photo, searchText.value, null,
         function(result, event){
             if (event.status) {
                 var lstBox = document.querySelector(selector+" #list-box");

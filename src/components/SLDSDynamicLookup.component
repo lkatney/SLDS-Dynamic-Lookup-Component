@@ -12,16 +12,16 @@
             required="true" type="String" assignTo="{!objectName}"/>
     <apex:attribute name="DisplayFieldApiNames" 
         description="Attribute to get fields Api Name whose value needs to be displayed while searching.These are seperated by comma.For example : 'firstname,lastname'" 
-            required="true" type="String"/>
+            required="true" type="String" assignTo="{!fieldApiNames}"/>
      <apex:attribute name="DisplayFieldsPattern" 
         description="Attribute to get pattern to display value.You can combine two fields with pattern. For example : 'firstname - lastname'" 
-            type="String"/>
+            type="String" assignTo="{!displayPattern}"/>
     <apex:attribute name="Photo" 
         description="Attribute that will tell if photo needs to be added to records while searching. For fields to be used, pattern should be 'field->fieldAPiName'. For url, pattern should be 'url->pathofimage'" 
-            type="String"/>
+            type="String" assignTo="{!photoValue}"/>
     <apex:attribute name="SetValueToField"
         description="Attribute that will tell where to put selected value"
-            required="true" type="String"/>
+            required="true" type="String" assignTo="{!setField}"/>
             
     <!-- body-->
         <div id="{!uniqueComponentId}">
@@ -41,10 +41,10 @@
                   <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
                      
                     <!-- section to display selected record-->
-                    <div class="slds-pill_container slds-show" style="display:none;" id="selected-record">
+                    <div class="slds-pill_container slds-show" style="display: {!IF(displayValue == null, 'none', 'block')};" id="selected-record">
                       <a href="javascript:void(0)" class="slds-pill">
-                        <img src=""  class="slds-icon slds-icon-standard-account slds-pill__icon" id="select-image"/>
-                        <span class="slds-pill__label" id="selected-name"></span>
+                        <img src="{!photoUrl}"  class="slds-icon slds-icon-standard-account slds-pill__icon" id="select-image" style="display: {!IF(photoUrl == null, 'none', 'inline')}"/>
+                        <span class="slds-pill__label" id="selected-name">{!displayValue}</span>
                         <button type="button" class="slds-button slds-button--icon-bare slds-pill__remove" onclick="removeRecord('{!uniqueComponentId}')">
                           <apex:image url="{!URLFOR(SLDSResourceName, '/assets/icons/utility/close_60.png')}"  styleclass="slds-button__icon"/>
                           <span class="slds-assistive-text">Remove</span>
@@ -53,7 +53,7 @@
                     </div>
                     
                     <!-- section to display input field for search-->
-                    <div id="input-text" style="display:block;">
+                    <div id="input-text" style="display: {!IF(displayValue == null, 'block', 'none')}">
                         <apex:image url="{!URLFOR(SLDSResourceName, '/assets/icons/utility/search_60.png')}"  styleclass="slds-input__icon slds-icon-text-default"/>
                         <input id="lookup" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" 
                             onkeyup="keyPressedOnLookup('{!uniqueComponentId}','{!ObjectApiName}', '{!DisplayFieldApiNames}', '{!DisplayFieldsPattern}','{!Photo}','{!objectLabelPlural}', '{!$RemoteAction.SLDSDynamicLookupController.search}')" 
