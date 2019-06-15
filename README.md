@@ -39,15 +39,15 @@ On VF page, just add a static resource and component with appropriare attributes
 
 ## Screenshots
 
-![Demo Page](/images/DemoPage.png "Demo Page")  
-![Search](/images/DemoPage.png "Search")  
-![Selection](/images/DemoPage.png "Selection")  
-
+![Demo](/images/Demo1.png)  
+![Demo](/images/Demo2.png)  
+![Demo](/images/Demo3.png)  
+![Demo](/images/Demo4.png)  
 
 ## Versions
 
 ### Version 1.4
-Introduction of dependent lookups
+Introduction of dependent lookups  
 Allow filters on lookups on basis of parent lookup
 
 ### Version 1.3    
