@@ -1,6 +1,7 @@
 public class SLDSLookupComponentDemoController {
     
     public contact con{get;set;}
+    public String oppId{get;set;}
     
     /**
      * Constructor

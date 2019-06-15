@@ -32,7 +32,9 @@ On VF page, just add a static resource and component with appropriare attributes
  **LabelName** 				| Required 		| Attribute to display label along with custom lookup field made by this component
  **SetValueToField** 		| Required 		| Attribute that will tell where to put selected value. Also populates the default value if field has value.
  **DisplayFieldsPattern**	| Optional		| Attribute to get pattern to display value.You can combine two fields with pattern.  For example : 'firstname - lastname'. By default it will take pattern as comma seperated fields
- **photo** 					| Optional 		| Attribute that will tell if photo needs to be added to records while searching.  For fields to be used, pattern should be 'field->fieldAPiName'. For url, pattern should be 'url->pathofimage'  
+ **photo** 					| Optional 		| Attribute that will tell if photo needs to be added to records while searching.  For fields to be used, pattern should be 'field->fieldAPiName'. For url, pattern should be 'url->pathofimage'
+ **FilterOn** | Optional | Attribute that will filter the list of records in results
+ **RenderOnComplete** | Optional | Attribute that will run an action function/javascript on complete
 
 
 ## Screenshots
@@ -43,6 +45,10 @@ On VF page, just add a static resource and component with appropriare attributes
 
 
 ## Versions
+
+### Version 1.4
+Introduction of dependent lookups
+Allow filters on lookups on basis of parent lookup
 
 ### Version 1.3    
 ##### Improvements  

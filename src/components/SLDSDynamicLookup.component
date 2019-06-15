@@ -22,6 +22,12 @@
     <apex:attribute name="SetValueToField"
         description="Attribute that will tell where to put selected value"
             required="true" type="String" assignTo="{!setField}"/>
+    <apex:attribute name="FilterOn"
+        description="Attribute that will filter the list of records in results"
+            type="String" assignTo="{!filters}"/>
+    <apex:attribute name="RenderOnComplete"
+        description="Attribute that will run an action function/javascript on complete"
+            type="String"/>
             
     <!-- body-->
         <div id="{!uniqueComponentId}">
@@ -32,7 +38,7 @@
               </div>
             </div>
             
-            <apex:actionFunction name="{!uniqueComponentId}setOwnerId" rerender="random" oncomplete="recordSelected('{!uniqueComponentId}')">
+            <apex:actionFunction name="{!uniqueComponentId}setOwnerId" rerender="random" oncomplete="recordSelected('{!uniqueComponentId}', '{!RenderOnComplete}')">
                 <apex:param name="setId" value="" assignTo="{!SetValueToField}"/>
             </apex:actionFunction>
              <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
@@ -56,7 +62,7 @@
                     <div id="input-text" style="display: {!IF(displayValue == null, 'block', 'none')}">
                         <apex:image url="{!URLFOR(SLDSResourceName, '/assets/icons/utility/search_60.png')}"  styleclass="slds-input__icon slds-icon-text-default"/>
                         <input id="lookup" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" 
-                            onkeyup="keyPressedOnLookup('{!uniqueComponentId}','{!ObjectApiName}', '{!DisplayFieldApiNames}', '{!DisplayFieldsPattern}','{!Photo}','{!objectLabelPlural}', '{!$RemoteAction.SLDSDynamicLookupController.search}')" 
+                            onkeyup="keyPressedOnLookup('{!uniqueComponentId}','{!ObjectApiName}', '{!DisplayFieldApiNames}', '{!DisplayFieldsPattern}','{!Photo}','{!objectLabelPlural}', '{!filters}', '{!$RemoteAction.SLDSDynamicLookupController.search}')" 
                                 placeholder="Search {!objectLabelPlural}"/>
                     </div>
                   </div>

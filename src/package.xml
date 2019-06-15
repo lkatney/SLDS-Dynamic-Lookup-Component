@@ -29,5 +29,5 @@
         <members>SLDSDynamicLookupScript</members>
         <name>StaticResource</name>
     </types>
-    <version>35.0</version>
+    <version>39.0</version>
 </Package>

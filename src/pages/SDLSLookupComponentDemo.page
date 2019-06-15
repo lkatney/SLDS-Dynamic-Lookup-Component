@@ -42,14 +42,23 @@
                 </div>
                 
                 <!-- create look up for AccountId-->
-                <c:SLDSDynamicLookup SLDSResourceName="{!$Resource.SLDS}" ObjectApiName="Account" DisplayFieldApiNames="Name,Type" DisplayFieldsPattern="Name(Type)" LabelName="Set Account" SetValueToField="{!con.AccountId}"/>
-                
-                <!-- create look up for OwnerId-->
-                <c:SLDSDynamicLookup SLDSResourceName="{!$Resource.SLDS}" ObjectApiName="User" DisplayFieldApiNames="Username,Name" DisplayFieldsPattern="Name - Username"  photo="field->smallPhotoUrl" LabelName="Set User" SetValueToField="{!con.OwnerId}"/>
+                <c:SLDSDynamicLookup SLDSResourceName="{!$Resource.SLDS}" ObjectApiName="Account" DisplayFieldApiNames="Name,Type" DisplayFieldsPattern="Name(Type)" LabelName="Set Account" SetValueToField="{!con.AccountId}" RenderOnComplete="rerenderOppLookup"/>
+
+                  <!-- create look up for OwnerId-->
+                <c:SLDSDynamicLookup SLDSResourceName="{!$Resource.SLDS}" ObjectApiName="User" DisplayFieldApiNames="Username,Name" DisplayFieldsPattern="Name - Username"  photo="field->smallPhotoUrl" LabelName="Set User" SetValueToField="{!con.OwnerId}" RenderOnComplete="rerenderOppLookup"/>
+
+                <!-- create look up for OpportunityId-->
+                <!-- section which is dependent on account Id & ownerId-->
+                <apex:outputPanel id="oppLookup">
+                  <c:SLDSDynamicLookup SLDSResourceName="{!$Resource.SLDS}" ObjectApiName="Opportunity" DisplayFieldApiNames="Name" DisplayFieldsPattern="Name" LabelName="Set Opportunity" SetValueToField="{!oppId}" FilterOn="AccountId = \'{!con.AccountId}\', OwnerId = \'{!con.OwnerId}\'"/>
+                </apex:outputPanel>
                 
                 <div class="slds-text-align--center">
                     <a class="slds-button slds-button--brand" onclick="submit()" href="javascript:void(0)">Submit</a>
                 </div>
+
+                <!-- all action functons to refresh related lookups-->
+                <apex:actionFunction name="rerenderOppLookup" rerender="oppLookup"/>
             </apex:form>
         </div>
         <!-- / PRIMARY CONTENT WRAPPER -->    
@@ -57,6 +66,7 @@
   </div>
   <!-- / REQUIRED SLDS WRAPPER -->    
   <apex:includeScript value="{!$Resource.SLDSDynamicLookupScript}"/>
+
 </body>
 </html>
 </apex:page>

@@ -5,11 +5,11 @@ var doneTypingInterval = 500;
 /**
  * Method to fire once user stop writing
  */
-function keyPressedOnLookup(componentId, objectName, fieldNames, fieldsPattern, photo, objectPluralName, remoteMethod){
+function keyPressedOnLookup(componentId, objectName, fieldNames, fieldsPattern, photo, objectPluralName, queryFilters, remoteMethod){
     clearTimeout(typingTimer);
     var selector = '#'+componentId;
     if (document.querySelector(selector+" #lookup").value) {
-        typingTimer = setTimeout(startSearch(componentId, objectName, fieldNames, fieldsPattern, photo, objectPluralName, remoteMethod), doneTypingInterval);
+        typingTimer = setTimeout(startSearch(componentId, objectName, fieldNames, fieldsPattern, photo, objectPluralName, queryFilters, remoteMethod), doneTypingInterval);
     }else{
         var searchText = document.querySelector(selector+" #lookup");
         var lstBox = document.querySelector(selector+" #list-box");
@@ -20,12 +20,15 @@ function keyPressedOnLookup(componentId, objectName, fieldNames, fieldsPattern, 
 /**
  * Function to get users from servers to display for Reviewers
  */
-function startSearch(componentId, objectName, fieldNames, fieldsPattern, photo, objectPluralName, remoteMethod) {
+function startSearch(componentId, objectName, fieldNames, fieldsPattern, photo, objectPluralName, queryFilters, remoteMethod) {
     var selector = '#'+componentId;
     showLoader(componentId);
     var searchText = document.querySelector(selector+" #lookup");
+    if(queryFilters === '' || queryFilters.length === 0){
+        queryFilters = null;
+    }
     Visualforce.remoting.Manager.invokeAction(remoteMethod,
-            objectName, fieldNames, fieldsPattern, photo, searchText.value, null,
+            objectName, fieldNames, fieldsPattern, photo, searchText.value, null, queryFilters,
         function(result, event){
             if (event.status) {
                 var lstBox = document.querySelector(selector+" #list-box");
@@ -97,7 +100,7 @@ function select(componentId, name,photoUrl,id){
  * User selected function
  * @return {[type]} [description]
  */
-function recordSelected(componentId){
+function recordSelected(componentId, renderOnComplete){
     var selector = '#'+componentId;
     if(document.querySelector(selector+" #selected-record").style.display == 'none'){
         document.querySelector(selector+" #selected-record").style.display = 'block';
@@ -108,6 +111,9 @@ function recordSelected(componentId){
     }else{
         document.querySelector(selector+" #input-text").style.display = 'block';
         document.querySelector(selector+" #selected-record").style.display = 'none';
+    }
+    if(renderOnComplete && renderOnComplete.length > 0){
+        eval(renderOnComplete + '()');
     }
     hideLoader(componentId);
 }

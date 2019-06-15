@@ -29,7 +29,7 @@ public class SLDSDynamicLookupController {
                     photoValue = '';
                 }
 
-                List<Wrapper> results = search(objectName, fieldApiNames, displayPattern, photoValue, null, value);
+                List<Wrapper> results = search(objectName, fieldApiNames, displayPattern, photoValue, null, value, filters);
                 
                 if(!results.isEmpty()){
                     displayValue = results[0].displayValue;
@@ -50,14 +50,15 @@ public class SLDSDynamicLookupController {
     public String fieldApiNames{get;set;}
     public String displayPattern{get;set;}
     public String photoValue{get;set;}
-    
+    public String filters{get;set;}
+
     /**
 	 * Remote action method to send list of records
 	 * @param  searchText 
 	 * @return  List<Wrapper>
 	 */
 	@RemoteAction
-	public static List<Wrapper> search(String objectName, String displayFieldNames, String fieldsPattern, String photoValue,String searchText, String recordId) {
+	public static List<Wrapper> search(String objectName, String displayFieldNames, String fieldsPattern, String photoValue,String searchText, String recordId, String queryFilters) {
 	    String query;
         List<String> displayFieldNamesLst;
         String photoFieldName;
@@ -79,6 +80,12 @@ public class SLDSDynamicLookupController {
             }
         }else{
             whereClause += ' WHERE Id =: recordId';
+        }
+
+        String filtersClause = createWhereClauseFromFilters(queryFilters);
+
+        if(String.isNotBlank(filtersClause)){
+            whereClause += ' AND ' + filtersClause;
         }
 
         //add Id field to field names if necessary
@@ -107,6 +114,8 @@ public class SLDSDynamicLookupController {
         }else{
             finalQuery = query;
         }
+
+        System.debug(':::QUERY:::' + finalQuery);
 	    
 	    for(Sobject sobj : database.query(finalQuery)){
 	        String displayValue = fieldsPattern;
@@ -121,7 +130,15 @@ public class SLDSDynamicLookupController {
 	    }
 	    return results;
 	}
-	
+
+    private static String createWhereClauseFromFilters(String queryFilters){
+        String filtersClause;
+        if(queryFilters != null && String.isNotBlank(queryFilters)){
+            String replacedFilters = queryFilters.replace('\\', '');
+            filtersClause = String.join(replacedFilters.split(','), ' AND ');
+        }
+        return filtersClause;
+    }	
 	
 	/*************************************************************************
 	 ******************************* WRAPPER **************************************
