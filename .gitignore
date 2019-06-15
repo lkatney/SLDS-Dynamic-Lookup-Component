@@ -2,3 +2,4 @@ config/*
 debug/*
 *.sublime-*
 .history
+.playground/*.zip
